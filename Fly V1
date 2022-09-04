@@ -1,4 +1,51 @@
-local script = Instance.new('LocalScript', Frame)
+-- Bring to you by 7alexv7
+-- Enjoy the script!
+
+-- Instances:
+
+local FlyGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextButton = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+
+--Properties:
+
+FlyGui.Name = "FlyGui"
+FlyGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+Frame.Parent = FlyGui
+Frame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.0685602352, 0, 0.168769717, 0)
+Frame.Size = UDim2.new(0.264544547, 0, 0.100000024, 0)
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.06324628, 0, 0.400667697, 0)
+TextButton.Size = UDim2.new(0.871157169, 0, 0.495614201, 0)
+TextButton.Font = Enum.Font.ArialBold
+TextButton.Text = "Fly"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextStrokeTransparency = 0.000
+TextButton.TextWrapped = true
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.Size = UDim2.new(0, 86, 0, 24)
+TextLabel.Font = Enum.Font.Oswald
+TextLabel.Text = "Made by Mari Tarziu"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+-- Scripts:
+
+local function NQWSTGE_fake_script() -- Frame.Fly 
+	local script = Instance.new('LocalScript', Frame)
 
 	local plr = script.Parent.Parent.Parent.Parent
 	repeat wait() until plr and plr.Character and plr.Character:findFirstChild("HumanoidRootPart") and plr.Character:findFirstChild("Humanoid") 
@@ -102,3 +149,79 @@ local script = Instance.new('LocalScript', Frame)
 			Fly()
 		end
 	end)
+	
+end
+coroutine.wrap(NQWSTGE_fake_script)()
+local function RAQA_fake_script() -- Frame.Buttons 
+	local script = Instance.new('LocalScript', Frame)
+
+	local Trigger = script.Parent.MiniTrext
+	local IsMini = false
+	function CreateTween(Instance,Style,Direction,Time,table,RepeatCount,CanRepeat,Delay)
+		local ts = game:GetService("TweenService")
+		local TweenInfo = TweenInfo.new(Time,Style,Direction,RepeatCount,CanRepeat,Delay)
+		local Tween = ts:Create(Instance,TweenInfo,table)
+		repeat wait() until Tween ~= nil
+		return Tween
+		
+	end
+	Trigger.MouseButton1Click:Connect(function()
+		if IsMini then
+			CreateTween(script.Parent,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0.5,{Size = UDim2.new(0.265, 0,0.1, 0)},0,false,0.1):Play()
+			IsMini = false
+			Trigger.Text = "-"
+		else
+			CreateTween(script.Parent,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0.5,{Size = UDim2.new(0.265, 0,0.042, 0)},0,false,0.1):Play()
+			IsMini = true
+			Trigger.Text = "+"
+		end
+	end)
+	script.Parent.Delete.MouseButton1Click:Connect(function()
+		script.Parent.Parent:Destroy()
+	end)
+end
+coroutine.wrap(RAQA_fake_script)()
+local function TKVUMP_fake_script() -- Frame.Drag Gui 
+	local script = Instance.new('LocalScript', Frame)
+
+	local UserInputService = game:GetService("UserInputService")
+	
+	local gui = script.Parent
+	
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+	
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+			
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+coroutine.wrap(TKVUMP_fake_script)()
