@@ -1,0 +1,39 @@
+local LP, Camera, UIS = game:GetService('Players')['LocalPlayer'], workspace['CurrentCamera'], game:GetService('UserInputService')
+local Char, Mouse = LP['Character'], LP:GetMouse()
+local Humanoid, Root = Char:FindFirstChildWhichIsA('Humanoid'), Char['HumanoidRootPart']
+ 
+local Tools = {
+	['Move'] = Instance.new('Tool');
+	['Clone'] = Instance.new('Tool');
+	['Destroy'] = Instance.new('Tool');
+}
+ 
+Tools['Move'].TextureId = 'rbxassetid://1048129653'; Tools['Clone'].TextureId = 'rbxasset://Textures/Clone.png'; Tools['Destroy'].TextureId = 'http://www.roblox.com/asset/?id=14808588'; for K,V in next, Tools do V['RequiresHandle'] = false end
+ 
+Tools['Move'].Parent = LP.Backpack
+Tools['Clone'].Parent = LP.Backpack
+Tools['Destroy'].Parent = LP.Backpack
+ 
+local Delete = function(Obj)
+	game:GetService('ReplicatedStorage').PlayerEvents['e'..LP['UserId']].DestroyItem:FireServer(Obj)
+end
+ 
+local Place = function(CFrame,Obj)
+	game:GetService('ReplicatedStorage').PlayerEvents['e'..LP['UserId']].PlaceItem:FireServer(CFrame,Obj)
+end
+ 
+local IgnoreList = {};
+ 
+for K,V in next, workspace:GetDescendants() do 
+	if V:IsA('Part') or V:IsA('BasePart') then 
+		if rawequal(V['Transparency'],1) then 
+			table.insert(IgnoreList,V)
+		end
+	end
+end
+ 
+for K,V in next, Char:GetDescendants() do 
+	if V:IsA('Part') or V:IsA('BasePart') then 
+		table.insert(IgnoreList,V)
+	end
+end
