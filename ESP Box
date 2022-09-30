@@ -1,0 +1,26 @@
+local ESP = loadstring(game:HttpGet("https://pastebin.com/raw/6PCa4iS2"))()
+ESP:Toggle(true)
+ESP.Tracers = false
+ESP.Names = false
+ESP.Boxes = false
+tab:Toggle("Tracers ESP",false, function(s)
+    if s then
+        ESP.Tracers = true
+        else
+        ESP.Tracers = false
+    end
+end)
+tab:Toggle("Names ESP",false, function(s)
+    if s then
+        ESP.Names = true
+    else
+        ESP.Names = false
+    end
+end)
+
+tab:Toggle("Boxes ESP",false, function(s)
+    if s then
+        ESP.Boxes = true
+    else
+        ESP.Boxes = false
+    end
