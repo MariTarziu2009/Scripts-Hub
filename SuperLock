@@ -5,14 +5,14 @@ wait();
 
 Notify({
 Description = "SuperLock made by MariTarziu";
-Title = "WarLock";
+Title = "SuperLock";
 Duration = 10;
 });
 
 wait(1.5)
 Notify({
 Description = "SuperLock Loaded";
-Title = "WarLock";
+Title = "SuperLock";
 Duration = 10;
 });
 
@@ -123,7 +123,7 @@ local PredictionValue = 0.1238915416
                     Plr = getClosestPlayerToCursor()
                 Notify({
 					Description = "???";
-					Title = "WarLock";
+					Title = "SuperLock";
 					Duration = 5;
 					});  
             end
@@ -134,7 +134,7 @@ local PredictionValue = 0.1238915416
  
                     Notify({
 					Description = ""..tostring(Plr.Character.Humanoid.DisplayName);
-					Title = "WarLock";
+					Title = "SuperLock";
 					Duration = 5;
 					});  
  
