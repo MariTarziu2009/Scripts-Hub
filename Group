@@ -12,7 +12,7 @@ local Label_3 = Instance.new("TextLabel")
 
 --Properties:
 
-ScreenGui.Parent = game.Workspace
+ScreenGui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Frame.Parent = ScreenGui
